@@ -15,13 +15,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://spinner:longirostris@db:5432/stenella
+      - DATABASE_URL=postgresql+psycopg://spinner:longirostris@db:5432/stenella
     depends_on:
       - db
     volumes:
       - .:/app # Hot-reloading: changes in code reflect in the container
       - /app/.venv
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 volumes:
   postgres_data:

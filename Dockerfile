@@ -7,4 +7,4 @@ RUN uv sync --frozen
 
 # Use the virtualenv created by uv
 ENV PATH="/app/.venv/bin:$PATH"
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
